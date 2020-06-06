@@ -1,0 +1,37 @@
+import React, { Component } from "react";
+
+export default class AddTodo extends Component {
+  state = {
+    title: "",
+  };
+
+  onChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.handleAddTodo(this.state.title);
+    this.setState({
+      title: "",
+    });
+  };
+
+  render() {
+    return (
+      <form action="" className="form-container" onSubmit={this.onSubmit}>
+        <input
+          name="title"
+          type="text"
+          placeholder="Add todo..."
+          value={this.state.title}
+          className="input-text"
+          onChange={this.onChange}
+        />
+        <input type="submit" value="submit" className="input-submit" />
+      </form>
+    );
+  }
+}
